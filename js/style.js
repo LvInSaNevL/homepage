@@ -7,10 +7,26 @@ var Evening = "-webkit-linear-gradient(-20deg, #fc6076 0%, #ff9a44 100%)"; //Ora
 $(document).ready(
 	function Start()
 	{
-		var d = new Date().getHours();
-		if (d < 6) 			{ document.getElementsByTagName("body")[0].style.background = Night; 	}
-		else if (d < 11) 	{ document.getElementsByTagName("body")[0].style.background = Morning; 	}
-		else if (d < 17) 	{ document.getElementsByTagName("body")[0].style.background = Day; 		}
-		else 				{ document.getElementsByTagName("body")[0].style.background = Evening; 	}
+		// Times:
+		// 	Morning => 06:00-11:00
+		// 	Day	=> 11:00-16:00
+		// 	Evening => 16:00-20:00
+		// 	Night	=> 20:00-06:00
+		
+		// After 6 Hour Offset:
+		// 	Morning => 00:00-05:00
+		// 	Day	=> 05:00-10:00
+		// 	Evening => 10:00-14:00
+		// 	Night	=> 14:00-00:00
+		
+		var d = new Date().getHours() - 6; // Offset for less complicated calculations
+		if (d < 5)
+			document.getElementsByTagName("body")[0].style.background = Morning;
+		else if (d < 10)
+			document.getElementsByTagName("body")[0].style.background = Day;
+		else if (d < 14)
+			document.getElementsByTagName("body")[0].style.background = Evening;
+		else
+			document.getElementsByTagName("body")[0].style.background = Night;
 	}
 );
