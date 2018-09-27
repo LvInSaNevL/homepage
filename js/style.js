@@ -5,12 +5,12 @@ var Evening = "-webkit-linear-gradient(-20deg, #fc6076 0%, #ff9a44 100%)"; //Ora
 
 
 $(document).ready(
-    function Start()
-    {
-       var d = new Date().getHours();
-	   if (21 <= d && d < 6) { document.getElementsByTagName("body")[0].style.background = Night; }
-	   else if (6 <= d && d < 11) { document.getElementsByTagName("body")[0].style.background = Morning; }
-	   else if (11 <= d && d < 17) { document.getElementsByTagName("body")[0].style.background = Day; }
-	   else if (17 <= d && d < 21) { document.getElementsByTagName("body")[0].style.background = Evening; }
-    }
+	function Start()
+	{
+		var d = new Date().getHours();
+		if (d < 6) 			{ document.getElementsByTagName("body")[0].style.background = Night; 	}
+		else if (d < 11) 	{ document.getElementsByTagName("body")[0].style.background = Morning; 	}
+		else if (d < 17) 	{ document.getElementsByTagName("body")[0].style.background = Day; 		}
+		else 				{ document.getElementsByTagName("body")[0].style.background = Evening; 	}
+	}
 );
