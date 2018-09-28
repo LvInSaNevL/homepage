@@ -48,7 +48,7 @@ function getCookie(name) {
 
 function CookieGen(cname, cvalue1, cvalue2) {
     var d = new Date();
-    d.setTime(d.getTime() + (1*60*1000));
+    d.setTime(d.getTime() + (20*60*1000));
     var expires = "expires="+ d.toUTCString();
 	var cookieString = cname + "=" + cvalue1 + ";" + expires;
     document.cookie = cookieString
