@@ -17,15 +17,42 @@ function GetLocation() {
 function ShowPosition(position) {
 	var Latitude = position.coords.latitude;
 	var Longitude = position.coords.longitude;
-	var dataSource = 'https://crossorigin.me/' + 'https://api.openweathermap.org/data/2.5/weather?lat=' + Latitude + '&lon=' + Longitude + '&units=imperial&APPID=d79f01b2f356f93e834eb7499e9f5c09'
+	var dataSource = "https://api.apixu.com/v1/current.json?key=c0f08c85f51d42b6804114856182809&q=" + Latitude + "," + Longitude
 	console.log(dataSource);
-	$.getJSON(dataSource,function(json){
-		var currentTemp = Math.round(json.main.temp) + "°F";
-		var currentWeather = json.weather[0].description;
+	if (!getCookie("Weather_Bool")) {
+		$.getJSON(dataSource,function(json){
+			var currentTemp = Math.round(json.current.temp_f) + "°F";
+			var currentWeather = json.current.condition.text;
+			console.log(currentTemp + ", " + currentWeather);
+			
+			CookieGen("Weather_Bool", true);
+			CookieGen("Temp", currentTemp);
+			CookieGen("Weather", currentWeather);
+			
+			document.getElementById("weather").innerHTML = currentTemp + ", " + currentWeather;
+		});
+	}
+	else {
+		var currentTemp = getCookie("Temp");
+		var currentWeather = getCookie("Weather")
 		console.log(currentTemp + ", " + currentWeather);
 		document.getElementById("weather").innerHTML = currentTemp + ", " + currentWeather;
-	});
+	}
 } 
+
+function getCookie(name) {
+  var value = "; " + document.cookie;
+  var parts = value.split("; " + name + "=");
+  if (parts.length == 2) return parts.pop().split(";").shift();
+}
+
+function CookieGen(cname, cvalue1, cvalue2) {
+    var d = new Date();
+    d.setTime(d.getTime() + (1*60*1000));
+    var expires = "expires="+ d.toUTCString();
+	var cookieString = cname + "=" + cvalue1 + ";" + expires;
+    document.cookie = cookieString
+}
 
 function GetTime() {
 	var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
