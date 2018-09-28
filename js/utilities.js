@@ -19,7 +19,7 @@ function ShowPosition(position) {
 	var Longitude = position.coords.longitude;
 	var dataSource = "https://api.apixu.com/v1/current.json?key=c0f08c85f51d42b6804114856182809&q=" + Latitude + "," + Longitude
 	console.log(dataSource);
-	if (!getCookie("Weather_Bool")) {
+	if (!CookieCheck("Weather_Bool")) {
 		$.getJSON(dataSource,function(json){
 			var currentTemp = Math.round(json.current.temp_f) + "°F";
 			var currentWeather = json.current.condition.text;
@@ -44,6 +44,12 @@ function getCookie(name) {
   var value = "; " + document.cookie;
   var parts = value.split("; " + name + "=");
   if (parts.length == 2) return parts.pop().split(";").shift();
+}
+
+function CookieCheck(cname) {
+    var cookie = getCookie(cname);
+    if (cookie == null) { false; }
+    else { true; }
 }
 
 function CookieGen(cname, cvalue1, cvalue2) {
