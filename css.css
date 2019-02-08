@@ -10,15 +10,15 @@ html, body {
   overflow: hidden;  
   background-color: #336B87;
   line-height: 1.3;
-  font-family: 'Karla', sans-serif;
+  font-family: 'Space Mono', monospace;
   -webkit-font-smoothing: antialiased;
   margin: 0;
   padding: 0;
 }
 
 #welcome {
-	font-family: 'IBM Plex Sans', sans-serif;
-	font-size: 400%;
+	font-family: 'Space Mono', monospace;
+	font-size: 200%;
 }
 
 .update { font-size: 140%; }
